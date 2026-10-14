@@ -1,0 +1,4 @@
+node_modules/
+vendor/
+.DS_Store
+# dist/ is committed: projects installing from the Git repository have nothing to build.

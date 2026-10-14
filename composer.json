@@ -1,0 +1,13 @@
+{
+    "name": "onlinecreation/onlc-bot-filter",
+    "description": "Server-side verifier for onlcBotFilter: filters the most naive bots from web forms with minimal friction for people, including assistive-technology users.",
+    "type": "library",
+    "keywords": ["captcha", "bot", "spam", "form", "accessibility"],
+    "homepage": "https://github.com/onlinecreation/onlcBotFilter",
+    "license": "MIT",
+    "require": { "php": ">=8.2", "ext-json": "*" },
+    "suggest": { "ext-apcu": "For ApcuKeyStore (single server)." },
+    "autoload": { "psr-4": { "OnlineCreation\\BotFilter\\": "php/src/" } },
+    "scripts": { "test": "php php/tests/run.php" },
+    "archive": { "exclude": ["/node_modules", "/src", "/tests", "/tools", "/demo", "/.github"] }
+}

@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>onlcBotFilter demo</title>
+  <style>
+    body { font: 16px/1.5 system-ui, sans-serif; margin: 24px auto; max-width: 560px; padding: 0 16px; color: #1d2421; }
+    label { display: block; margin: 12px 0 4px; font-weight: 600; }
+    input, textarea { width: 100%; box-sizing: border-box; font: inherit; padding: 8px; border: 1px solid #9aa59e; border-radius: 6px; }
+    button { margin-top: 16px; font: inherit; padding: 10px 18px; border-radius: 8px; border: 0; background: #2f6b3c; color: #fff; }
+    .note { color: #55605a; font-size: .9em; }
+  </style>
+  <script src="/dist/onlc-bot-filter.js" defer></script>
+</head>
+<body>
+  <h1>onlcBotFilter demo</h1>
+  <p class="note">Fill in the form normally: no visible check. Submit it within 3 seconds, or without interacting, to see the fallback challenge.</p>
+  <form method="post" action="/submit" data-onlc-bot-filter="contact" data-onlc-bot-filter-endpoint="/onlc-bot-filter/key">
+    <input type="hidden" name="action" value="contact">
+    <label for="name">Name</label>
+    <input id="name" name="name" autocomplete="name">
+    <label for="message">Message</label>
+    <textarea id="message" name="message" rows="4"></textarea>
+    <button type="submit">Send</button>
+  </form>
+</body>
+</html>
