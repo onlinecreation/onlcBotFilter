@@ -14,6 +14,7 @@
 import { hmacSha256 } from '../shared/hmac';
 import { FIELD_NAME, interactionCount, MAX_FIELDS, type Counts, type FieldInfo, type KeyResponse, type Payload } from '../shared/protocol';
 import { runChallenge } from './challenge';
+import { BotFilterError } from './errors';
 import { messagesFor, type Messages } from './messages';
 
 export type { KeyResponse, Messages };
@@ -40,11 +41,7 @@ export interface Options {
   allowUntrusted?: boolean;
 }
 
-export class BotFilterError extends Error {
-  constructor(readonly code: 'KEY_UNAVAILABLE' | 'ALREADY_SUBMITTED' | 'CANCELLED' | 'DETACHED', message: string) {
-    super(message);
-  }
-}
+export { BotFilterError };
 
 interface HeldKey extends KeyResponse { receivedAt: number; receivedWall: number }
 
