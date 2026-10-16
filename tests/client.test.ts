@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { attach } from '../src/client';
+import { attach, BotFilterError } from '../src/client';
 import { issueKey, MemoryKeyStore, verify } from '../src/server';
 
 let store: MemoryKeyStore;
@@ -133,6 +133,7 @@ describe('onlcBotFilter côté navigateur', () => {
     const pending = c.seal();
     await vi.waitFor(() => expect(document.querySelector('dialog.obf')).not.toBeNull());
     document.querySelector<HTMLDialogElement>('dialog.obf')!.dispatchEvent(new Event('cancel'));
+    await expect(pending).rejects.toBeInstanceOf(BotFilterError);
     await expect(pending).rejects.toMatchObject({ code: 'CANCELLED' });
     interact(f);
     vi.advanceTimersByTime(5000);

@@ -7,6 +7,7 @@
  *   lues à voix haute.
  */
 import type { Challenge } from '../shared/protocol';
+import { BotFilterError } from './errors';
 import { fill, type Messages } from './messages';
 
 export interface ChallengeSpec { letter: string; holds: number[] }
@@ -129,7 +130,7 @@ export function runChallenge(spec: ChallengeSpec, m: Messages, lang: string, opt
       previous?.focus?.();
     };
     const finish = (c: Challenge) => { close(); resolve(c); };
-    const abort = () => { close(); reject(Object.assign(new Error('onlcBotFilter: défi annulé'), { code: 'CANCELLED' })); };
+    const abort = () => { close(); reject(new BotFilterError('CANCELLED', 'onlcBotFilter : défi annulé')); };
     cancel.addEventListener('click', abort);
     dialog.addEventListener('cancel', (e) => { e.preventDefault(); abort(); });
 

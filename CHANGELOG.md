@@ -4,6 +4,13 @@ Semantic versioning (`MAJOR.MINOR.PATCH`). The **protocol** version (`v` in the 
 response) is separate. It only changes with a major library version, and client and server must
 then be updated together.
 
+## Unreleased
+
+- Client: cancelling the challenge now rejects `seal()` with a `BotFilterError` (code `CANCELLED`),
+  as its type declares. It used to be a plain `Error` carrying a `code` property, so
+  `error instanceof BotFilterError` was false.
+- README: the rejection codes of `seal()` are documented.
+
 ## 1.0.0 — 2026-10-14
 
 First public release, protocol 2.

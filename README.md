@@ -136,6 +136,15 @@ filter.reset();                              // after the response: next key (al
 // Server answered CHALLENGE_REQUIRED: start again with filter.seal({ force: true }).
 ```
 
+`seal()` rejects with a `BotFilterError` whose `code` tells why:
+
+| Code | Meaning | What to do |
+|---|---|---|
+| `CANCELLED` | The person closed the challenge (Cancel button or Escape) | Nothing: the form stays as it is, `seal()` can be called again |
+| `ALREADY_SUBMITTED` | `seal()` is running or was already called since the last `reset()` | Ignore it (double click), or call `reset()` after the server's response |
+| `KEY_UNAVAILABLE` | The key route could not be reached | Show an error, then `reset()` to ask for a new key |
+| `DETACHED` | `detach()` was called on the instance | Create a new instance |
+
 | Option | Purpose |
 |---|---|
 | `action` | Protected action, bound to the key |
@@ -143,7 +152,7 @@ filter.reset();                              // after the response: next key (al
 | `mode` | `form` (default, intercepts submission) or `manual` |
 | `fieldName` | Hidden field name (default `onlc-bot-filter`) |
 | `lang`, `messages` | Challenge language (default: the page's) and texts |
-| `onError` | Key unavailable in form mode. Default: a message inside the form |
+| `onError` | Key unavailable in form mode (receives the `BotFilterError`). Default: a message inside the form |
 | `forceChallenge` | Challenge from the first submission (attribute `data-onlc-bot-filter-challenge`) |
 | `injectStyle` | `false`: load `dist/onlc-bot-filter.css` yourself, for a strict CSP (attribute `data-onlc-bot-filter-nostyle`) |
 
