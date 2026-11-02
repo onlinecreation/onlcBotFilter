@@ -1,6 +1,6 @@
 {
   "name": "onlc-bot-filter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Filters the most naive bots from web forms with minimal friction for people, including assistive-technology users. Signed interaction count, accessible fallback challenge, PHP and Node verifiers.",
   "keywords": ["captcha", "bot", "spam", "form", "accessibility", "a11y", "php", "privacy"],
   "homepage": "https://github.com/onlinecreation/onlcBotFilter#readme",

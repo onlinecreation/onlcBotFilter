@@ -4,6 +4,15 @@ Semantic versioning (`MAJOR.MINOR.PATCH`). The **protocol** version (`v` in the 
 response) is separate. It only changes with a major library version, and client and server must
 then be updated together.
 
+## 1.0.1 — 2026-11-02
+
+Accessibility fix, protocol 2 unchanged (proofs and test vectors identical).
+
+- The challenge's slider handle is exposed as a **button** (`role="button"`) instead of a slider:
+  arrow keys never moved it, a key press opens keyboard mode. Screen readers now announce what it
+  does (French accessibility framework RGAA 4.1.2, criterion 7.1). `aria-valuemin`, `aria-valuemax`
+  and `aria-valuenow` are gone.
+
 ## 1.0.0 — 2026-10-14
 
 First public release, protocol 2.

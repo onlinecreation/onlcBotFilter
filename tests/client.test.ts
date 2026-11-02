@@ -119,9 +119,9 @@ describe('onlcBotFilter côté navigateur', () => {
     void c.seal().catch(() => undefined);
     await vi.waitFor(() => expect(document.querySelector('dialog.obf')).not.toBeNull());
     const thumb = document.querySelector<HTMLElement>('.obf-thumb')!;
-    expect(thumb.getAttribute('role')).toBe('slider');
+    expect(thumb.getAttribute('role')).toBe('button');
+    expect(thumb.hasAttribute('aria-valuenow')).toBe(false);
     thumb.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
-    expect(thumb.getAttribute('aria-valuenow')).toBe('0');
     expect(document.querySelector<HTMLElement>('.obf-zone')!.closest('div[hidden]')).toBeNull();
     expect(document.querySelector('.obf-live')!.textContent).toMatch(/^Press and hold the [A-Z] key on your keyboard\.$/);
   });

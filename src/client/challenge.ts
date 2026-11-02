@@ -80,7 +80,9 @@ export function runChallenge(spec: ChallengeSpec, m: Messages, lang: string, opt
   // Curseur
   const hint = el('p', { id: `${id}-h`, class: 'obf-msg' });
   const fillBar = el('div', { class: 'obf-fill' });
-  const thumb = el('div', { class: 'obf-thumb', role: 'slider', tabindex: '0', 'aria-valuemin': '0', 'aria-valuemax': '100', 'aria-valuenow': '0', 'aria-label': m.sliderLabel, 'aria-describedby': `${id}-s ${id}-h` }, '→');
+  // Bouton et non curseur (role="slider") : les flèches ne le déplacent pas, une touche ouvre le mode
+  // clavier ; un lecteur d'écran l'annonce donc pour ce qu'il fait (RGAA 7.1).
+  const thumb = el('div', { class: 'obf-thumb', role: 'button', tabindex: '0', 'aria-label': m.sliderLabel, 'aria-describedby': `${id}-s ${id}-h` }, '→');
   const track = el('div', { class: 'obf-track' }, fillBar, thumb);
   const toKeys = el('button', { type: 'button' }, m.useKeyboard);
   const slidePane = el('div', {}, el('p', { id: `${id}-s` }, m.slide), track, hint, toKeys);
@@ -148,7 +150,6 @@ export function runChallenge(spec: ChallengeSpec, m: Messages, lang: string, opt
       fillBar.classList.toggle('obf-back', animate);
       thumb.style.left = `${pos * span}px`;
       fillBar.style.width = `${pos * span + thumb.offsetWidth}px`;
-      thumb.setAttribute('aria-valuenow', String(Math.round(pos * 100)));
     };
     const at = (clientX: number) => {
       const span = track.clientWidth - thumb.offsetWidth;
